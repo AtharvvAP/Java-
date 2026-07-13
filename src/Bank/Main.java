@@ -5,24 +5,23 @@ import java.util.ArrayList;
 
 public class Main{
     public static void main(String[] args) {
-        HashMap<String, String> accounts= new HashMap<>();
+        ArrayList<String> customers= new ArrayList<>();
 
-        accounts.put("1","9000000");
-        accounts.put("2","95412532");
-        accounts.put("3","21525555");
+        customers.add("aaaa");
+        customers.add("bbbb");
+        customers.add("cccc");
+        customers.add("dddd");
 
-        System.out.println(accounts);
-
-        System.out.println(accounts.get("2"));
-
-        System.out.println(accounts.containsKey("5"));
-
-        accounts.remove("2");
-
-        System.out.println("Size : " + accounts.size());
-
-        for(String key : accounts.keySet()){
-            System.out.println(key + " -> " + accounts.get(key));
+        for(int i=0; i < customers.size(); i++){
+            System.out.println(customers);
         }
+
+        System.out.println(customers.get(3));
+
+        System.out.println("Size " + customers.size());
+
+        System.out.println(customers.remove(1));
+
+        System.out.println(customers);
     }
 }
