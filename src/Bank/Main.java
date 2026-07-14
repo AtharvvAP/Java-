@@ -5,33 +5,27 @@ import java.util.ArrayList;
 
 public class Main{
     public static void main(String[] args) {
-        ArrayList<String> customers= new ArrayList<>();
+       HashMap<Integer, String> accounts=new HashMap<>();
 
-        customers.add("aaaa");
-        customers.add("bbbb");
-        customers.add("cccc");
-        customers.add("dddd");
+       accounts.put(101,"AAAA");
+       accounts.put(102,"BBBB");
+       accounts.put(103,"CCCC");
+       accounts.put(104,"DDDD");
 
-        for(int i=0; i < customers.size(); i++){
-            System.out.println(customers.get(i));
+        System.out.println(accounts);
+
+        System.out.println(accounts.get(102));
+        System.out.println(accounts.get(103));
+
+        System.out.println(accounts.remove(104));
+
+        if(accounts.containsKey(101)){
+            System.out.println("It is existing in the records");
+        }
+        else{
+            System.out.println("Not existed");
         }
 
-        System.out.println(customers.get(3));
-
-        System.out.println("Size " + customers.size());
-
-        System.out.println(customers.remove(1));
-
-        System.out.println(customers);
-
-        if(customers.contains("aaaa")){
-            System.out.println("It is true");
-        }
-        else {
-            System.out.println("It is false");
-        }
-
-        System.out.println(customers.set(1,"EEEEE"));
-        System.out.println(customers);
+        System.out.println(accounts.keySet());
     }
 }
