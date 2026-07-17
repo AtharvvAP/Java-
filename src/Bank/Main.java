@@ -66,25 +66,35 @@ public class Main{
         accounts.add(s1);
         accounts.add(s2);
 
+        HashMap<Long, Account> accountMap=new HashMap<>();
+        accountMap.put(s1.accNo, s1);
+        accountMap.put(s2.accNo, s2);
+
         for(Account acc : accounts){
             acc.showDetails();
         }
 
-        s1.showDetails();
-        s1.deposit(15798);
-
         Scanner sc=new Scanner(System.in);
 
+        System.out.println("Enter account number to operate on : ");
+        long accountNo=sc.nextLong();
+        Account select=accountMap.get(accountNo);
+
         try {
+            System.out.println("Enter amount to deposit");
+            double depAmt=sc.nextDouble();
+            select.deposit(depAmt);
             System.out.println("Enter amount to withdraw");
-            double amount=sc.nextDouble();
-            s1.withdraw(amount);
-            s1.calInterest();
-            s1.showDetails();
+            double withAmt=sc.nextDouble();
+            select.withdraw(withAmt);
         }catch (InputMismatchException e){
             System.out.println("Entered invalid amount");
         }finally {
             System.out.println("Thank you for using services");
         }
+
+        System.out.println("Looking up for account " + accountNo);
+        Account found = accountMap.get(accountNo);
+        found.showDetails();
     }
 }
