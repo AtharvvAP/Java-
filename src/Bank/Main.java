@@ -54,15 +54,27 @@ class savingAccount extends Account{
     void calInterest(){
         double calAmount = (balance * interestRate)/100;
         balance = balance + calAmount;
-        System.out.println("New Available balance is " + calAmount);
+        System.out.println("Interest on Available balance is " + calAmount);
     }
 }
 public class Main{
     public static void main(String[] args) {
-        savingAccount s1=new savingAccount("AAAA",12345678,5247891,12);
+        savingAccount s1=new savingAccount("AAAA",12345678,52478,12);
         s1.showDetails();
-        s1.deposit(157956);
-        s1.withdraw(200000);
-        s1.showDetails();
+        s1.deposit(15798);
+
+        Scanner sc=new Scanner(System.in);
+
+        try {
+            System.out.println("Enter amount to withdraw");
+            double amount=sc.nextDouble();
+            s1.withdraw(amount);
+            s1.calInterest();
+            s1.showDetails();
+        }catch (InputMismatchException e){
+            System.out.println("Entered invalid amount");
+        }finally {
+            System.out.println("Thank you for using services");
+        }
     }
 }
