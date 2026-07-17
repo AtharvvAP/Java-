@@ -60,6 +60,16 @@ class savingAccount extends Account{
 public class Main{
     public static void main(String[] args) {
         savingAccount s1=new savingAccount("AAAA",12345678,52478,12);
+        savingAccount s2=new savingAccount("BBBB",258741369,14578,12);
+
+        ArrayList<Account> accounts=new ArrayList<>();
+        accounts.add(s1);
+        accounts.add(s2);
+
+        for(Account acc : accounts){
+            acc.showDetails();
+        }
+
         s1.showDetails();
         s1.deposit(15798);
 
