@@ -57,18 +57,40 @@ class savingAccount extends Account{
         System.out.println("Interest on Available balance is " + calAmount);
     }
 }
+class sharesAccount extends Account{
+    int sharesPrice;
+    int noOfShares;
+
+    sharesAccount(String n, long accno, double bal, int shPri, int noOfShr){
+        super(n,accno,bal);
+        sharesPrice=shPri;
+        noOfShares=noOfShr;
+    }
+
+    void calShares(){
+        double shareCal = (sharesPrice * noOfShares);
+        System.out.println("Shares Calculation " + shareCal);
+    }
+}
 public class Main{
     public static void main(String[] args) {
         savingAccount s1=new savingAccount("AAAA",12345678,52478,12);
         savingAccount s2=new savingAccount("BBBB",258741369,14578,12);
 
+        sharesAccount sh1=new sharesAccount("CCCC",987456321,45896,1500,154);
+        sharesAccount sh2=new sharesAccount("DDDD",321456789,56875,567,100);
+
         ArrayList<Account> accounts=new ArrayList<>();
         accounts.add(s1);
         accounts.add(s2);
+        accounts.add(sh1);
+        accounts.add(sh2);
 
         HashMap<Long, Account> accountMap=new HashMap<>();
         accountMap.put(s1.accNo, s1);
         accountMap.put(s2.accNo, s2);
+        accountMap.put(sh1.accNo, sh1);
+        accountMap.put(sh2.accNo, sh2);
 
         for(Account acc : accounts){
             acc.showDetails();
@@ -79,6 +101,12 @@ public class Main{
         System.out.println("Enter account number to operate on : ");
         long accountNo=sc.nextLong();
         Account select=accountMap.get(accountNo);
+
+        if(select instanceof sharesAccount){
+            sharesAccount sa=(sharesAccount) select;
+            sa.calShares();
+            sa.showDetails();
+        }
 
         try {
             System.out.println("Enter amount to deposit");
