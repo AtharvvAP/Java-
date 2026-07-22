@@ -137,56 +137,67 @@ public class Main{
             return;
         }
 
-        if(select instanceof sharesAccount){
-            sharesAccount sa=(sharesAccount) select;
-            sa.calShares();
-            sa.showDetails();
-        }
+       boolean running = true;
 
-        if(select instanceof divCal){
-            divCal d=(divCal) select;
-            d.showDetails();
-            System.out.println("Member Type is " +d.memberType);
-            d.calDiv();
-        }
-
-        boolean running = true;
-
-        while (running){
+        while (running) {
             try {
                 System.out.println("1. Deposit");
                 System.out.println("2. Withdraw");
                 System.out.println("3. Show Details");
-                System.out.println("4. Exit");
-                int choice=sc.nextInt();
 
-                switch (choice){
-                    case 1 :
+                if (select instanceof sharesAccount) {
+                    System.out.println("4. Calculate shares");
+                }
+                if (select instanceof divCal) {
+                    System.out.println("5. Calculate Dividend");
+                }
+
+                System.out.println("6. Exit");
+                int choice = sc.nextInt();
+
+                switch (choice) {
+                    case 1:
                         System.out.println("Enter amount to deposit");
-                        double depAmt=sc.nextDouble();
+                        double depAmt = sc.nextDouble();
                         select.deposit(depAmt);
                         break;
-                    case 2 :
+                    case 2:
                         System.out.println("Enter amount to withdraw");
-                        double withAmt=sc.nextDouble();
+                        double withAmt = sc.nextDouble();
                         select.withdraw(withAmt);
                         break;
-                    case 3 :
+                    case 3:
                         select.showDetails();
                         break;
-                    case 4 :
+                    case 4:
+                        if (select instanceof sharesAccount) {
+                            sharesAccount sa = (sharesAccount) select;
+                            sa.calShares();
+                        } else {
+                            System.out.println("Account has no shares");
+                        }
+                        break;
+                    case 5:
+                        if (select instanceof divCal) {
+                            divCal d = (divCal) select;
+                            System.out.println("Member type is " + d.memberType);
+                            d.calDiv();
+                        } else {
+                            System.out.println("account has no dividend Info.");
+                        }
+                        break;
+                    case 6:
                         running = false;
                         System.out.println("Thank you for using service");
                         break;
-                    default :
-                        System.out.println("Invalid choice , try again");
+                    default:
+                        System.out.println("Inavlid Choice, Try again");
                 }
-            }catch (InputMismatchException e){
-                System.out.println("Entered invalid input , try again");
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid Input, Try again");
                 sc.nextLine();
             }
         }
-
         System.out.println("Looking up for account " + accountNo);
         Account found = accountMap.get(accountNo);
         found.showDetails();
