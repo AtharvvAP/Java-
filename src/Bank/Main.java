@@ -150,17 +150,41 @@ public class Main{
             d.calDiv();
         }
 
-        try {
-            System.out.println("Enter amount to deposit");
-            double depAmt=sc.nextDouble();
-            select.deposit(depAmt);
-            System.out.println("Enter amount to withdraw");
-            double withAmt=sc.nextDouble();
-            select.withdraw(withAmt);
-        }catch (InputMismatchException e){
-            System.out.println("Entered invalid amount");
-        }finally {
-            System.out.println("Thank you for using services");
+        boolean running = true;
+
+        while (running){
+            try {
+                System.out.println("1. Deposit");
+                System.out.println("2. Withdraw");
+                System.out.println("3. Show Details");
+                System.out.println("4. Exit");
+                int choice=sc.nextInt();
+
+                switch (choice){
+                    case 1 :
+                        System.out.println("Enter amount to deposit");
+                        double depAmt=sc.nextDouble();
+                        select.deposit(depAmt);
+                        break;
+                    case 2 :
+                        System.out.println("Enter amount to withdraw");
+                        double withAmt=sc.nextDouble();
+                        select.withdraw(withAmt);
+                        break;
+                    case 3 :
+                        select.showDetails();
+                        break;
+                    case 4 :
+                        running = false;
+                        System.out.println("Thank you for using service");
+                        break;
+                    default :
+                        System.out.println("Invalid choice , try again");
+                }
+            }catch (InputMismatchException e){
+                System.out.println("Entered invalid input , try again");
+                sc.nextLine();
+            }
         }
 
         System.out.println("Looking up for account " + accountNo);
