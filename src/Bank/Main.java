@@ -3,14 +3,26 @@ package Bank;
 import java.util.*;
 
 class Account{
-    String name;
-    long accNo;
-    double balance;
+    protected String name;
+    protected long accNo;
+    protected double balance;
 
     Account(String n, long accno, double bal){
         name=n;
         accNo=accno;
         balance=bal;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public long getAccNo(){
+        return accNo;
+    }
+
+    public double getBalance(){
+        return balance;
     }
 
     void showDetails(){
@@ -115,12 +127,12 @@ public class Main{
         accounts.add(d2);
 
         HashMap<Long, Account> accountMap=new HashMap<>();
-        accountMap.put(s1.accNo, s1);
-        accountMap.put(s2.accNo, s2);
-        accountMap.put(sh1.accNo, sh1);
-        accountMap.put(sh2.accNo, sh2);
-        accountMap.put(d1.accNo, d1);
-        accountMap.put(d2.accNo, d2);
+        accountMap.put(s1.getAccNo(), s1);
+        accountMap.put(s2.getAccNo(), s2);
+        accountMap.put(sh1.getAccNo(), sh1);
+        accountMap.put(sh2.getAccNo(), sh2);
+        accountMap.put(d1.getAccNo(), d1);
+        accountMap.put(d2.getAccNo(), d2);
 
         for(Account acc : accounts){
             acc.showDetails();
