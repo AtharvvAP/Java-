@@ -63,6 +63,12 @@ class savingAccount extends Account{
         interestRate=rate;
     }
 
+    @Override
+    void showDetails(){
+        super.showDetails();
+        System.out.println("Interest Rate is " +interestRate +"%");
+    }
+
     void calInterest(){
         double calAmount = (balance * interestRate)/100;
         balance = balance + calAmount;
@@ -79,6 +85,12 @@ class sharesAccount extends Account{
         noOfShares=noOfShr;
     }
 
+    @Override
+    void showDetails(){
+        super.showDetails();
+        System.out.println("No. of shares " + noOfShares + " @price " + sharesPrice);
+    }
+
     void calShares(){
         double shareCal = (sharesPrice * noOfShares);
         System.out.println("Shares Calculation " + shareCal);
@@ -92,6 +104,12 @@ class divCal extends Account{
         super(n,accno,bal);
         memberType=memType;
         sharesValue=shValue;
+    }
+
+    @Override
+    void showDetails(){
+        super.showDetails();
+        System.out.println("Member Type" + memberType);
     }
 
     void calDiv(){
@@ -155,7 +173,10 @@ public class Main{
             try {
                 System.out.println("1. Deposit");
                 System.out.println("2. Withdraw");
-                System.out.println("3. Show Details");
+
+                if(select instanceof savingAccount){
+                    System.out.println("3. Calculate Interest");
+                }
 
                 if (select instanceof sharesAccount) {
                     System.out.println("4. Calculate shares");
@@ -163,8 +184,8 @@ public class Main{
                 if (select instanceof divCal) {
                     System.out.println("5. Calculate Dividend");
                 }
-
-                System.out.println("6. Exit");
+                System.out.println("6. Show Details");
+                System.out.println("7. Exit");
                 int choice = sc.nextInt();
 
                 switch (choice) {
@@ -179,7 +200,13 @@ public class Main{
                         select.withdraw(withAmt);
                         break;
                     case 3:
-                        select.showDetails();
+                        if(select instanceof savingAccount){
+                            savingAccount s=(savingAccount) select;
+                            s.calInterest();
+                        }
+                        else {
+                            System.out.println("This account has no interest to calculate");
+                        }
                         break;
                     case 4:
                         if (select instanceof sharesAccount) {
@@ -199,6 +226,9 @@ public class Main{
                         }
                         break;
                     case 6:
+                        select.showDetails();
+                        break;
+                    case 7:
                         running = false;
                         System.out.println("Thank you for using service");
                         break;
