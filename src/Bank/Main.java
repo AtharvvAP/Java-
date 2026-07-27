@@ -6,12 +6,14 @@ class Account{
     protected String name;
     protected long accNo;
     protected double balance;
+    protected int pin;
     protected ArrayList<String> history = new ArrayList<>();
 
-    Account(String n, long accno, double bal){
+    Account(String n, long accno, double bal, int p){
         name=n;
         accNo=accno;
         balance=bal;
+        pin=p;
     }
 
     public String getName(){
@@ -68,8 +70,8 @@ class Account{
 class savingAccount extends Account{
     double interestRate;
 
-    savingAccount(String n, long accno, double bal, double rate){
-        super(n,accno,bal);
+    savingAccount(String n, long accno, double bal, double rate, int p){
+        super(n,accno,bal,p);
         interestRate=rate;
     }
 
@@ -89,8 +91,8 @@ class sharesAccount extends Account{
     int sharesPrice;
     int noOfShares;
 
-    sharesAccount(String n, long accno, double bal, int shPri, int noOfShr){
-        super(n,accno,bal);
+    sharesAccount(String n, long accno, double bal, int shPri, int noOfShr, int p){
+        super(n,accno,bal,p);
         sharesPrice=shPri;
         noOfShares=noOfShr;
     }
@@ -110,8 +112,8 @@ class divCal extends Account{
     String memberType;
     double sharesValue;
 
-    divCal(String n, long accno, double bal, String memType, double shValue){
-        super(n,accno,bal);
+    divCal(String n, long accno, double bal, String memType, double shValue, int p){
+        super(n,accno,bal,p);
         memberType=memType;
         sharesValue=shValue;
     }
@@ -137,14 +139,14 @@ class divCal extends Account{
 }
 public class Main{
     public static void main(String[] args) {
-        savingAccount s1=new savingAccount("AAAA",12345678,52478,12);
-        savingAccount s2=new savingAccount("BBBB",258741369,14578,12);
+        savingAccount s1=new savingAccount("AAAA",12345678,52478,12,1111);
+        savingAccount s2=new savingAccount("BBBB",258741369,14578,12,2222);
 
-        sharesAccount sh1=new sharesAccount("CCCC",987456321,45896,1500,154);
-        sharesAccount sh2=new sharesAccount("DDDD",321456789,56875,567,100);
+        sharesAccount sh1=new sharesAccount("CCCC",987456321,45896,1500,154,3333);
+        sharesAccount sh2=new sharesAccount("DDDD",321456789,56875,567,100,4444);
 
-        divCal d1=new divCal("EEEE",14785236,58547,"Premium",1547);
-        divCal d2=new divCal("FFFF",58796734,54782,"Regular",354);
+        divCal d1=new divCal("EEEE",14785236,58547,"Premium",1547,5555);
+        divCal d2=new divCal("FFFF",58796734,54782,"Regular",354,6666);
 
         ArrayList<Account> accounts=new ArrayList<>();
         accounts.add(s1);
@@ -162,10 +164,6 @@ public class Main{
         accountMap.put(d1.getAccNo(), d1);
         accountMap.put(d2.getAccNo(), d2);
 
-        for(Account acc : accounts){
-            acc.showDetails();
-        }
-
         Scanner sc=new Scanner(System.in);
 
         System.out.println("Enter account number to operate on : ");
@@ -174,6 +172,13 @@ public class Main{
 
         if(select == null){
             System.out.println("Account not found , Enter valid account number.");
+            return;
+        }
+
+        System.out.println("Enter PIN ");
+        int enteredPin=sc.nextInt();
+        if(enteredPin != select.pin){
+            System.out.println("Access denied, Enter correct PIN");
             return;
         }
 
