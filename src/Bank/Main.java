@@ -6,6 +6,7 @@ class Account{
     protected String name;
     protected long accNo;
     protected double balance;
+    protected ArrayList<String> history = new ArrayList<>();
 
     Account(String n, long accno, double bal){
         name=n;
@@ -29,12 +30,20 @@ class Account{
         System.out.println("Balance is " + balance);
     }
 
+    void showHistory(){
+        System.out.println("Transaction History : ");
+        for (String entry : history){
+            System.out.println(entry);
+        }
+    }
+
     void deposit(double amount){
         if(amount <= 0){
             System.out.println("Invalid deposit amount");
         }
         else {
             balance = balance + amount;
+            history.add("+" + amount);
             System.out.println("Available balance is " + balance);
         }
     }
@@ -47,6 +56,7 @@ class Account{
         }
         else {
             balance = balance - amount;
+            history.add("-" + amount);
             System.out.println("Available balance is " + balance);
         }
     }
@@ -185,7 +195,8 @@ public class Main{
                     System.out.println("5. Calculate Dividend");
                 }
                 System.out.println("6. Show Details");
-                System.out.println("7. Exit");
+                System.out.println("7. Show Transaction History");
+                System.out.println("8. Exit");
                 int choice = sc.nextInt();
 
                 switch (choice) {
@@ -229,6 +240,9 @@ public class Main{
                         select.showDetails();
                         break;
                     case 7:
+                        select.showHistory();
+                        break;
+                    case 8:
                         running = false;
                         System.out.println("Thank you for using service");
                         break;
