@@ -201,7 +201,8 @@ public class Main{
                 }
                 System.out.println("6. Show Details");
                 System.out.println("7. Show Transaction History");
-                System.out.println("8. Exit");
+                System.out.println("8. Transfer Money");
+                System.out.println("9. Exit");
                 int choice = sc.nextInt();
 
                 switch (choice) {
@@ -248,6 +249,26 @@ public class Main{
                         select.showHistory();
                         break;
                     case 8:
+                        System.out.println("Enter account no. to transfer money");
+                        long targetAccNo=sc.nextLong();
+                        Account target=accountMap.get(targetAccNo);
+                        if(target == null){
+                            System.out.println("Cannot find account");
+                        }else {
+                            System.out.println("Enter amount to transfer");
+                            double transferAmt=sc.nextDouble();
+                            if(transferAmt <= 0){
+                                System.out.println("Enter Valid Amount");
+                            } else if (transferAmt > select.getBalance()) {
+                                System.out.println("Insufficient amount in account");
+                            }else {
+                                select.withdraw(transferAmt);
+                                target.deposit(transferAmt);
+                                System.out.println("Transfer Successful");
+                            }
+                        }
+                        break;
+                    case 9:
                         running = false;
                         System.out.println("Thank you for using service");
                         break;
