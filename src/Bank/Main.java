@@ -262,9 +262,12 @@ public class Main{
                             } else if (transferAmt > select.getBalance()) {
                                 System.out.println("Insufficient amount in account");
                             }else {
-                                select.withdraw(transferAmt);
-                                target.deposit(transferAmt);
-                                System.out.println("Transfer Successful");
+                                select.balance-=transferAmt;
+                                target.balance+=transferAmt;
+                                select.history.add("Transfer " + transferAmt + " to account " + targetAccNo);
+                                target.history.add("Received " + transferAmt + " from account " + accountNo);
+                                System.out.println("Transfered " + transferAmt + " to " + targetAccNo + " Successfully ");
+                                System.out.println("Available balance is " +select.getBalance());
                             }
                         }
                         break;
