@@ -1,20 +1,20 @@
 package Bank;
 
+import java.util.HashMap;
+
 public class DsaProblems {
     public static void main(String[] args) {
         int arr[]={10,99,666,223,448};
+        int target=109;
 
-        int largest=Integer.MIN_VALUE;
-        int secondLargest=Integer.MIN_VALUE;
+        HashMap<Integer, Integer>seen=new HashMap<>();
 
-        for(int num : arr){
-            if(num > largest){
-                secondLargest = largest;
-                largest=num;
-            } else if (num > secondLargest) {
-                secondLargest=num;
+        for(int i=0; i<arr.length; i++){
+            int complement=target - arr[i];
+            if(seen.containsKey(complement)){
+                System.out.println("Found " + complement + " + " + arr[i] + " = " +target);
             }
+            seen.put(arr[i], i);
         }
-        System.out.println("Second Largest number is : " + secondLargest);
     }
 }
