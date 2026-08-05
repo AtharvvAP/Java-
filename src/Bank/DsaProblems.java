@@ -26,8 +26,6 @@ public  class DsaProblems{
 
         System.out.println("replaced : " + s.replace("Java", "Core Java"));
 
-        System.out.println("replace all r with @ : " + s.replaceAll("r", "@"));
-
         System.out.println("to upper case : " + s.toUpperCase());
 
         System.out.println("to lower case : " + s.toLowerCase());
@@ -43,6 +41,10 @@ public  class DsaProblems{
         System.out.println("\"\".is Empty : " + "".isEmpty());
 
         System.out.println("\"   \".is Blank :" +"  ".isBlank());
+
+        System.out.println("replace r with ! : " + s.replaceAll("r", "!"));
+
+        System.out.println("replace m with o : " +s.replaceAll("m","o"));
 
     }
 }
