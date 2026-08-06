@@ -1,120 +1,32 @@
 package Bank;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public  class DsaProblems{
     public static void main(String[] args) {
-        //String s = "Java Programming";
-
-        ArrayList<String>names=new ArrayList<>();
-
-        names.add("Mercedes c 220 d 1616");
-        names.add("BMW");
-        names.add("Audi");
-        names.add("Jaguar");
-        names.add("Porsche");
-        names.add("Rolls Royce");
-        names.add("Land Cruiser");
-
-        for(int i=0; i<names.size(); i++){
-            if(i % 2 == 0) {
-                System.out.println(names.get(i));
-            }
-        }
-
-        for(String toys : names){
-            if(toys.startsWith("L")) {
-                System.out.println("Car name : " + toys);
-            }
-        }
-
-        for(String toys : names){
-            if(toys.contains("Royce")) {
-                System.out.println("Car name : " + toys);
-            }
-        }
+        HashMap<Integer, ArrayList<String>> map = new HashMap<>();
 
 
-        for(String toys : names){
-            if(toys.length() > 8) {
-                System.out.println("Car name : " + toys);
-            }
-        }
+        ArrayList<String> cars =new ArrayList<>();
+        cars.add("Mercedes");
+        cars.add("BMW");
+        map.put(1, cars);
 
 
+        ArrayList<String> cars1=new ArrayList<>();
+        cars1.add("Rolls Royce");
+        cars1.add("Jaguar");
+        map.put(2, cars1);
 
+        System.out.println(map);
 
+        System.out.println(map.get(1).get(0));
 
+        System.out.println(map.get(2));
 
+        System.out.println(map.get(2).get(1));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//        System.out.println("Length of string = " + s.length());
-//
-//        System.out.println("Char at 8 = " + s.charAt(8));
-//
-//        System.out.println("substring 11 = " +s.substring(11));
-//
-//        System.out.println("Contains(\"Prog\") : " + s.contains("Prog"));
-//
-//        System.out.println("starts with (\" Ja\") : " + s.startsWith(" Ja"));
-//
-//        System.out.println("end with (\"ing \") : " + s.endsWith("ing "));
-//
-//        System.out.println("Equals to " + s.equals("Programming"));
-//
-//        System.out.println("equalsIgnoreCase (\"  java programming  \") : " + s.equalsIgnoreCase("java programming"));
-//
-//        System.out.println("index of (n) : " + s.indexOf('n'));
-//
-//        System.out.println("last index of (r) : " + s.lastIndexOf('r'));
-//
-//        System.out.println("replaced : " + s.replace("Java", "Core Java"));
-//
-//        System.out.println("to upper case : " + s.toUpperCase());
-//
-//        System.out.println("to lower case : " + s.toLowerCase());
-//
-//        System.out.println("triming " + s.trim());
-//
-//        String[] words=s.trim().split(" ");
-//        System.out.println("split() : ");
-//        for(String word : words){
-//            System.out.println(word);
-//        }
-//
-//        System.out.println("\"\".is Empty : " + "".isEmpty());
-//
-//        System.out.println("\"   \".is Blank :" +"  ".isBlank());
-//
-//        System.out.println("replace r with ! : " + s.replaceAll("r", "!"));
-//
-//        System.out.println("replace m with o : " +s.replaceAll("m","o"));
 
     }
 }
