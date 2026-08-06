@@ -8,31 +8,39 @@ public  class DsaProblems{
 
         ArrayList<String>names=new ArrayList<>();
 
-        names.add("AAAA");
-        names.add("BBBB");
-        names.add("CCCC");
-        System.out.println(names);
+        names.add("Mercedes c 220 d 1616");
+        names.add("BMW");
+        names.add("Audi");
+        names.add("Jaguar");
+        names.add("Porsche");
+        names.add("Rolls Royce");
+        names.add("Land Cruiser");
 
-        System.out.println(names.get(2));
+        for(int i=0; i<names.size(); i++){
+            if(i % 2 == 0) {
+                System.out.println(names.get(i));
+            }
+        }
 
-        System.out.println(names.size());
+        for(String toys : names){
+            if(toys.startsWith("L")) {
+                System.out.println("Car name : " + toys);
+            }
+        }
 
-        System.out.println(names.contains("BBB"));
+        for(String toys : names){
+            if(toys.contains("Royce")) {
+                System.out.println("Car name : " + toys);
+            }
+        }
 
-        System.out.println(names.remove("AAAA"));
 
-        System.out.println(names);
+        for(String toys : names){
+            if(toys.length() > 8) {
+                System.out.println("Car name : " + toys);
+            }
+        }
 
-        System.out.println(names.set(1,"ZZZZ"));
-        System.out.println(names);
-
-        System.out.println(names.isEmpty());
-
-        names.add("DDDD");
-        names.add("EEEE");
-        names.add("FFFF");
-        names.add("GGGG");
-        System.out.println(names);
 
 
 
