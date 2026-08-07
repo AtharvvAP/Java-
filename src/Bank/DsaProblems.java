@@ -9,23 +9,41 @@ public  class DsaProblems{
 
 
         ArrayList<String> cars =new ArrayList<>();
-        cars.add("Mercedes");
-        cars.add("BMW");
-        map.put(1, cars);
+        map.put(1, new ArrayList<>());
+        map.get(1).add("Mercedes");
+        map.get(1).add("BMW");
 
 
         ArrayList<String> cars1=new ArrayList<>();
-        cars1.add("Rolls Royce");
-        cars1.add("Jaguar");
-        map.put(2, cars1);
+        map.put(2, new ArrayList<>());
+        map.get(2).add("Porsche");
+        map.get(2).add("Audi");
 
-        System.out.println(map);
+        ArrayList<String> cars2=new ArrayList<>();
+        map.put(3, new ArrayList<>());
+        map.get(3).add("Ferrari");
+        map.get(3).add("Lamborghini");
+        map.get(3).add("McLaren");
 
-        System.out.println(map.get(1).get(0));
+//        System.out.println(map);
+
+        System.out.println(map.get(1));
 
         System.out.println(map.get(2));
 
-        System.out.println(map.get(2).get(1));
+        System.out.println(map.get(3));
+
+        System.out.println(map.get(3).get(2));
+
+        System.out.println(map.get(1).size());
+
+        System.out.println(map.get(1).get(0));
+
+//        System.out.println(map.get(1).get(0));
+//
+//        System.out.println(map.get(2));
+//
+//        System.out.println(map.get(2).get(1));
 
 
     }
