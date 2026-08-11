@@ -2,7 +2,7 @@ package Bank;
 
 import java.util.*;
 
-class Account{
+abstract class Account{
     protected String name;
     protected long accNo;
     protected double balance;
@@ -15,6 +15,8 @@ class Account{
         balance=bal;
         pin=p;
     }
+
+    abstract void calculate();
 
     public String getName(){
         return name;
@@ -81,7 +83,7 @@ class savingAccount extends Account{
         System.out.println("Interest Rate is " +interestRate +"%");
     }
 
-    void calInterest(){
+    void calculate(){
         double calAmount = (balance * interestRate)/100;
         balance = balance + calAmount;
         System.out.println("Interest on Available balance is " + calAmount);
@@ -103,7 +105,7 @@ class sharesAccount extends Account{
         System.out.println("No. of shares " + noOfShares + " @price " + sharesPrice);
     }
 
-    void calShares(){
+    void calculate(){
         double shareCal = (sharesPrice * noOfShares);
         System.out.println("Shares Calculation " + shareCal);
     }
@@ -124,7 +126,7 @@ class divCal extends Account{
         System.out.println("Member Type" + memberType);
     }
 
-    void calDiv(){
+    void calculate(){
         double dividendAmount;
             if(memberType.equals("Premium")){
                 dividendAmount=(sharesValue * 8)/100;
@@ -188,21 +190,11 @@ public class Main{
             try {
                 System.out.println("1. Deposit");
                 System.out.println("2. Withdraw");
-
-                if(select instanceof savingAccount){
-                    System.out.println("3. Calculate Interest");
-                }
-
-                if (select instanceof sharesAccount) {
-                    System.out.println("4. Calculate shares");
-                }
-                if (select instanceof divCal) {
-                    System.out.println("5. Calculate Dividend");
-                }
-                System.out.println("6. Show Details");
-                System.out.println("7. Show Transaction History");
-                System.out.println("8. Transfer Money");
-                System.out.println("9. Exit");
+                System.out.println("3. Calculate");
+                System.out.println("4. Show Details");
+                System.out.println("5. Show Transaction History");
+                System.out.println("6. Transfer Money");
+                System.out.println("7. Exit");
                 int choice = sc.nextInt();
 
                 switch (choice) {
@@ -217,38 +209,15 @@ public class Main{
                         select.withdraw(withAmt);
                         break;
                     case 3:
-                        if(select instanceof savingAccount){
-                            savingAccount s=(savingAccount) select;
-                            s.calInterest();
-                        }
-                        else {
-                            System.out.println("This account has no interest to calculate");
-                        }
-                        break;
+                       select.calculate();
+                       break;
                     case 4:
-                        if (select instanceof sharesAccount) {
-                            sharesAccount sa = (sharesAccount) select;
-                            sa.calShares();
-                        } else {
-                            System.out.println("Account has no shares");
-                        }
-                        break;
+                       select.showDetails();
+                       break;
                     case 5:
-                        if (select instanceof divCal) {
-                            divCal d = (divCal) select;
-                            System.out.println("Member type is " + d.memberType);
-                            d.calDiv();
-                        } else {
-                            System.out.println("account has no dividend Info.");
-                        }
-                        break;
-                    case 6:
-                        select.showDetails();
-                        break;
-                    case 7:
                         select.showHistory();
                         break;
-                    case 8:
+                    case 6:
                         System.out.println("Enter account no. to transfer money");
                         long targetAccNo=sc.nextLong();
                         Account target=accountMap.get(targetAccNo);
@@ -271,7 +240,7 @@ public class Main{
                             }
                         }
                         break;
-                    case 9:
+                    case 7:
                         running = false;
                         System.out.println("Thank you for using service");
                         break;
