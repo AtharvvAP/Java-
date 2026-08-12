@@ -24,11 +24,16 @@ public  class DsaProblems{
 
         for(int num : arr){
             if(map.containsKey(num)){
-                System.out.println("First duplicate : " + num);
-                break;
+                map.put(num, map.get(num) + 1);
             }
             else {
-                map.put(num, num);
+                map.put(num, 1);
+            }
+        }
+        for(int num : arr){
+            if(map.get(num) == 1){
+                System.out.println("First number that appear only once  : " + num);
+                break;
             }
         }
     }
