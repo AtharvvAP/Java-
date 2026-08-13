@@ -2,38 +2,24 @@ package Bank;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 public  class DsaProblems{
     public static void main(String[] args) {
-        HashMap<Integer, Integer> map = new HashMap<>();
+
+        HashSet<Integer> map = new HashSet<>();
 
         int arr[]={1, 2, 2, 3, 1, 2, 4, 3, 3};
 
-//        for(int num : arr){
-//            if(map.containsKey(num)){
-//                map.put(num, map.get(num) + 1);
-//            }
-//            else {
-//                map.put(num , 1);
-//            }
-//        }
-//        System.out.println(map);
-
-        System.out.println("=====================================");
+        System.out.println("========================");
 
         for(int num : arr){
-            if(map.containsKey(num)){
-                map.put(num, map.get(num) + 1);
+            if(map.contains(num)){
+                System.out.println("Numbers are : " + num);
             }
             else {
-                map.put(num, 1);
-            }
-        }
-        for(int num : arr){
-            if(map.get(num) == 1){
-                System.out.println("First number that appear only once  : " + num);
-                break;
+                map.add(num);
             }
         }
     }
