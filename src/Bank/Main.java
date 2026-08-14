@@ -79,8 +79,8 @@ abstract class Account{
             balance -=amount;
             target.balance +=amount;
 
-            history.add("Transfer " + amount + "to account" + target.accNo);
-            target.history.add("Received" + amount + "from account" + accNo);
+            history.add("Transfer " + amount + " to account " + target.accNo);
+            target.history.add("Received" + amount + " from account " + accNo);
 
             System.out.println("Amount transferred successfully");
 
