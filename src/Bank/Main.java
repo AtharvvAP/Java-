@@ -5,8 +5,8 @@ import java.util.*;
 abstract class Account{
     protected String name;
     protected long accNo;
-    protected double balance;
-    protected int pin;
+    private double balance;
+    private int pin;
     protected ArrayList<String> history = new ArrayList<>();
 
     Account(String n, long accno, double bal, int p){
@@ -14,6 +14,10 @@ abstract class Account{
         accNo=accno;
         balance=bal;
         pin=p;
+    }
+
+    public boolean verifyPin(int enteredPin){
+        return pin==enteredPin;
     }
 
     abstract void calculate();
@@ -54,13 +58,32 @@ abstract class Account{
 
     void withdraw(double amount){
         if(amount <= 0){
-            System.out.println("Inavlid amount");
+            System.out.println("Invalid amount");
         } else if (amount > balance) {
             System.out.println("Insufficient amount to withdraw");
         }
         else {
             balance = balance - amount;
             history.add("-" + amount);
+            System.out.println("Available balance is " + balance);
+        }
+    }
+
+    void toTransfer(Account target, double amount){
+        if(amount <= 0){
+            System.out.println("Enter valid amount");
+        } else if (amount > balance) {
+            System.out.println("Insufficient balance, Enter valid amount");
+        }
+        else {
+            balance -=amount;
+            target.balance +=amount;
+
+            history.add("Transfer " + amount + "to account" + target.accNo);
+            target.history.add("Received" + amount + "from account" + accNo);
+
+            System.out.println("Amount transferred successfully");
+
             System.out.println("Available balance is " + balance);
         }
     }
@@ -84,8 +107,8 @@ class savingAccount extends Account{
     }
 
     void calculate(){
-        double calAmount = (balance * interestRate)/100;
-        balance = balance + calAmount;
+        double calAmount = (getBalance() * interestRate)/100;
+        deposit(calAmount);
         System.out.println("Interest on Available balance is " + calAmount);
     }
 }
@@ -179,7 +202,7 @@ public class Main{
 
         System.out.println("Enter PIN ");
         int enteredPin=sc.nextInt();
-        if(enteredPin != select.pin){
+        if(!select.verifyPin(enteredPin)){
             System.out.println("Access denied, Enter correct PIN");
             return;
         }
@@ -223,21 +246,10 @@ public class Main{
                         Account target=accountMap.get(targetAccNo);
                         if(target == null){
                             System.out.println("Cannot find account");
-                        }else {
+                        } else {
                             System.out.println("Enter amount to transfer");
-                            double transferAmt=sc.nextDouble();
-                            if(transferAmt <= 0){
-                                System.out.println("Enter Valid Amount");
-                            } else if (transferAmt > select.getBalance()) {
-                                System.out.println("Insufficient amount in account");
-                            }else {
-                                select.balance-=transferAmt;
-                                target.balance+=transferAmt;
-                                select.history.add("Transfer " + transferAmt + " to account " + targetAccNo);
-                                target.history.add("Received " + transferAmt + " from account " + accountNo);
-                                System.out.println("Transfered " + transferAmt + " to " + targetAccNo + " Successfully ");
-                                System.out.println("Available balance is " +select.getBalance());
-                            }
+                            double transferAmount=sc.nextDouble();
+                            select.toTransfer(target, transferAmount);
                         }
                         break;
                     case 7:
