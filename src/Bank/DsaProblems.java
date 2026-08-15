@@ -8,17 +8,22 @@ import java.util.Map;
 public  class DsaProblems{
     public static void main(String[] args) {
 
-        HashMap<Integer, Integer> seen = new HashMap<>();
+//        HashMap<Integer, Integer> seen = new HashMap<>();
 
-        int arr[]={1,3,5,7,8};
-        int target=8;
+        int arr[]={1,3,0,12,0,7,4,0,55,141};
+        int j=0;
 
         for(int i=0; i<arr.length; i++){
-            int complement = target - arr[i];
-            if(seen.containsKey(complement)){
-                System.out.println("Found" + complement + " + " + arr[i] + " = " + target);
+            if(arr[i] != 0){
+                arr[j]=arr[i];
+                j++;
             }
-            seen.put(arr[i], i);
+        }
+        for(int i=j; i<arr.length; i++){
+            arr[i]=0;
+        }
+        for(int i=0; i<arr.length; i++){
+            System.out.print(arr[i] + " ");
         }
     }
 }
