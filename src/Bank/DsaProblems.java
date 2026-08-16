@@ -8,22 +8,38 @@ import java.util.Map;
 public  class DsaProblems{
     public static void main(String[] args) {
 
-//        HashMap<Integer, Integer> seen = new HashMap<>();
+    int arr1[]={1,3,5,7,9};
+    int arr2[]={2,4,6,8};
 
-        int arr[]={1,3,0,12,0,7,4,0,55,141};
-        int j=0;
+    int i=0;
+    int j=0;
+    int k=0;
 
-        for(int i=0; i<arr.length; i++){
-            if(arr[i] != 0){
-                arr[j]=arr[i];
-                j++;
-            }
+    int result[]=new int[arr1.length + arr2.length];
+
+    while(i< arr1.length && j<arr2.length){
+        if(arr1[i] < arr2[j]){
+            result[k]=arr1[i];
+            i++;
         }
-        for(int i=j; i<arr.length; i++){
-            arr[i]=0;
+        else{
+            result[k]=arr2[j];
+            j++;
         }
-        for(int i=0; i<arr.length; i++){
-            System.out.print(arr[i] + " ");
-        }
+        k++;
+    }
+    while (i<arr1.length){
+        result[k]=arr1[i];
+        i++;
+        k++;
+    }
+    while (j< arr2.length){
+        result[k]=arr2[j];
+        j++;
+        k++;
+    }
+    for(int num : result){
+        System.out.print(num + " ");
+    }
     }
 }
