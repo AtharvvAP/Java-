@@ -7,39 +7,21 @@ import java.util.Map;
 
 public  class DsaProblems{
     public static void main(String[] args) {
+        int prices[]={7,1,5,3,6,4};
 
-    int arr1[]={1,3,5,7,9};
-    int arr2[]={2,4,6,8};
+        int minimumPrice=prices[0];
+        int maxProfit=0;
 
-    int i=0;
-    int j=0;
-    int k=0;
-
-    int result[]=new int[arr1.length + arr2.length];
-
-    while(i< arr1.length && j<arr2.length){
-        if(arr1[i] < arr2[j]){
-            result[k]=arr1[i];
-            i++;
+        for (int i=1; i<prices.length; i++){
+            int currentPrices=prices[i];
+            if(currentPrices < minimumPrice){
+                minimumPrice=currentPrices;
+            }
+            int profit=currentPrices - minimumPrice;
+            if(profit > maxProfit){
+                maxProfit=profit;
+            }
         }
-        else{
-            result[k]=arr2[j];
-            j++;
-        }
-        k++;
-    }
-    while (i<arr1.length){
-        result[k]=arr1[i];
-        i++;
-        k++;
-    }
-    while (j< arr2.length){
-        result[k]=arr2[j];
-        j++;
-        k++;
-    }
-    for(int num : result){
-        System.out.print(num + " ");
-    }
+        System.out.println("Maximum profit we can gain is " +maxProfit);
     }
 }
