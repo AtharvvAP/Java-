@@ -7,21 +7,12 @@ import java.util.Map;
 
 public  class DsaProblems{
     public static void main(String[] args) {
-        int prices[]={7,1,5,3,6,4};
+        String s="Hello";
+        String reversed="";
 
-        int minimumPrice=prices[0];
-        int maxProfit=0;
-
-        for (int i=1; i<prices.length; i++){
-            int currentPrices=prices[i];
-            if(currentPrices < minimumPrice){
-                minimumPrice=currentPrices;
-            }
-            int profit=currentPrices - minimumPrice;
-            if(profit > maxProfit){
-                maxProfit=profit;
-            }
+        for(int i=s.length()-1; i>=0; i--){
+            reversed= reversed + s.charAt(i);
         }
-        System.out.println("Maximum profit we can gain is " +maxProfit);
+        System.out.println(reversed);
     }
 }
