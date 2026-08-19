@@ -1,13 +1,13 @@
 package Bank;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
 
 public  class DsaProblems{
     public static void main(String[] args) {
-//        String s="Hello";
+//        Scanner sc=new Scanner(System.in);
+//        System.out.println("Enter String : ");
+//        String s=sc.nextLine();
+//
 //        String reversed="";
 //
 //        for(int i=s.length()-1; i>=0; i--){
@@ -15,7 +15,10 @@ public  class DsaProblems{
 //        }
 //        System.out.println(reversed);
 
-        String s="hello";
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter String : ");
+        String s=sc.nextLine();
+
         String reversed="";
 
         for(int i=s.length()-1; i>=0; i--){
