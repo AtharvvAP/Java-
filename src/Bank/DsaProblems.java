@@ -4,31 +4,40 @@ import java.util.*;
 
 public  class DsaProblems{
     public static void main(String[] args) {
-//        Scanner sc=new Scanner(System.in);
-//        System.out.println("Enter String : ");
-//        String s=sc.nextLine();
-//
-//        String reversed="";
-//
-//        for(int i=s.length()-1; i>=0; i--){
-//            reversed= reversed + s.charAt(i);
-//        }
-//        System.out.println(reversed);
+        String s1="listen";
+        String s2="silent";
 
-        Scanner sc=new Scanner(System.in);
-        System.out.print("Enter String : ");
-        String s=sc.nextLine();
+        HashMap<Character, Integer> map1 =new HashMap<>();
+        HashMap<Character, Integer> map2 =new HashMap<>();
 
-        String reversed="";
-
-        for(int i=s.length()-1; i>=0; i--){
-            reversed +=s.charAt(i);
+        for(int i=0; i<s1.length(); i++){
+            char ch=s1.charAt(i);
+            if(map1.containsKey(ch)){
+                map1.put(ch, map1.get(ch)+1);
+            }
+            else {
+                map1.put(ch, 1);
+            }
         }
-        if(s.equals(reversed)){
-            System.out.println("String is palindrome : " + reversed);
+        for(int i=0; i< s2.length(); i++){
+            char ch=s2.charAt(i);
+            if (map2.containsKey(ch)) {
+                map2.put(ch, map2.get(ch)+1);
+            }
+            else {
+                map2.put(ch, 1);
+            }
+        }
+        System.out.println(map1);
+        System.out.println(map2);
+
+        System.out.println("--------------------------------");
+
+        if(map1.equals(map2)){
+            System.out.println("It is valid anagram");
         }
         else {
-            System.out.println("String is not palindrome : " + reversed);
+            System.out.println("It is not anagram");
         }
     }
 }
