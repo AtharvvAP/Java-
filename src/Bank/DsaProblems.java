@@ -4,8 +4,13 @@ import java.util.*;
 
 public  class DsaProblems{
     public static void main(String[] args) {
-        String s1="listen";
-        String s2="silent";
+
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter 1st string : ");
+        String s1=sc.nextLine();
+
+        System.out.print("Enter 2nd string : ");
+        String s2=sc.nextLine();
 
         HashMap<Character, Integer> map1 =new HashMap<>();
         HashMap<Character, Integer> map2 =new HashMap<>();
